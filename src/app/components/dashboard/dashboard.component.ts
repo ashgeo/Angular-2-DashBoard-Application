@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
 moduleId:module.id,
@@ -7,14 +9,12 @@ moduleId:module.id,
   templateUrl: 'dashboard.component.html'
 })
 export class DashBoardComponent  { 
-constructor(private router:Router)
-{
-
+constructor(private router:Router,private authenticationService: AuthService){
 }
 
 logout()
 {
-    window.localStorage.removeItem('auth_key');
+    this.authenticationService.logout();  
     this.router.navigate(['login']);
 }
- }
+}
